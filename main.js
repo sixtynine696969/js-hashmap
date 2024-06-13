@@ -9,6 +9,8 @@ class Node {
 class HashMap {
     array = new Array(16);
 
+    loadFacotor = 0.75;
+
     hash(key) {
         let hashCode = 0;
       
@@ -20,7 +22,7 @@ class HashMap {
         return hashCode;
     }
 
-    set(key, value) {
+    set(key, value) { // to correct (value owerwriting is out of loop)
         let index = this.hash(key)
         if (this.array[index] && this.array[index] instanceof Node) {
             let currentNode = this.array[index];
@@ -75,7 +77,7 @@ class HashMap {
                         delete this.array[index];
                     }
                     else if (currentNode.next) {
-                        previousNode = currentNode.next;
+                        previousNode.next = currentNode.next;
                     } else {
                         previousNode.next = null;
                     }
@@ -156,19 +158,16 @@ class HashMap {
     }
 }
 
+// Tests
 let hashMap = new HashMap()
 hashMap.set('john','smith')
 hashMap.set('john', 'smith')
 hashMap.set('john', 'smith')
 hashMap.set('john', 'smith')
-hashMap.set('joe', 'smith')
+hashMap.set('john', 'smith')
 console.log(hashMap.array)
 console.log(hashMap.get('john'))
 console.log(hashMap.has('john'))
-// hashMap.remove('john');
+hashMap.remove('john');
 console.log(hashMap.array)
 console.log(hashMap.length());
-// hashMap.clear()
-console.log(hashMap.array)
-console.log(hashMap.values())
-console.log(hashMap.entries())
