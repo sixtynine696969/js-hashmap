@@ -102,6 +102,43 @@ class HashMap {
         }
         return numberOfKeys;
     }
+
+    clear() {
+        // this.array = new Array(this.array.length)
+        for (let i = 0; i < this.array.length; i++) {
+            delete this.array[i];
+        }
+    }
+
+    keys() {
+        let keys = [];
+        for (let i = 0; i < this.array.length; i++) {
+            let bucket = this.array[i]
+            if (bucket && bucket instanceof Node) {
+                let currentNode = bucket;
+                while (currentNode) {
+                    keys.push(currentNode.key);
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+        return keys;
+    }
+
+    values() {
+        let values = [];
+        for (let i = 0; i < this.array.length; i++) {
+            let bucket = this.array[i]
+            if (bucket && bucket instanceof Node) {
+                let currentNode = bucket;
+                while (currentNode) {
+                    values.push(currentNode.value);
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+        return values;
+    }
 }
 
 let hashMap = new HashMap()
@@ -113,6 +150,9 @@ hashMap.set('john', 'smith')
 console.log(hashMap.array)
 console.log(hashMap.get('john'))
 console.log(hashMap.has('john'))
-hashMap.remove('john');
+// hashMap.remove('john');
 console.log(hashMap.array)
 console.log(hashMap.length());
+// hashMap.clear()
+console.log(hashMap.array)
+console.log(hashMap.values())
