@@ -109,10 +109,10 @@ hashMap.set('john','smith')
 hashMap.set('john', 'smith')
 hashMap.set('john', 'smith')
 hashMap.set('john', 'smith')
-hashMap.set('john', 'penis')
+hashMap.set('john', 'smith')
 console.log(hashMap.array)
 console.log(hashMap.get('john'))
 console.log(hashMap.has('john'))
 hashMap.remove('john');
 console.log(hashMap.array)
-// console.log(hashMap.length);
+console.log(hashMap.length());
