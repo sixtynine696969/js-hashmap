@@ -87,16 +87,32 @@ class HashMap {
         }
         return false;
     }
+
+    length() {
+        let numberOfKeys = 0;
+        for (let i = 0; i < this.array.length; i++) {
+            let bucket = this.array[i]
+            if (bucket && bucket instanceof Node) {
+                let currentNode = bucket;
+                while (currentNode) {
+                    numberOfKeys += 1;
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+        return numberOfKeys;
+    }
 }
 
 let hashMap = new HashMap()
-hashMap.set('nigger','jew')
-hashMap.set('nigger', 'jew')
-hashMap.set('nigger', 'jew')
-hashMap.set('nigger', 'jew')
-hashMap.set('nigger', 'penis')
+hashMap.set('john','smith')
+hashMap.set('john', 'smith')
+hashMap.set('john', 'smith')
+hashMap.set('john', 'smith')
+hashMap.set('john', 'penis')
 console.log(hashMap.array)
-console.log(hashMap.get('nigger'))
-console.log(hashMap.has('nigger'))
-hashMap.remove('nigger');
+console.log(hashMap.get('john'))
+console.log(hashMap.has('john'))
+hashMap.remove('john');
 console.log(hashMap.array)
+// console.log(hashMap.length);
