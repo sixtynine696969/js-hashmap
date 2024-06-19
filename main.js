@@ -8,7 +8,6 @@ class Node {
 
 class HashMap {
     array = new Array(16);
-
     loadFacotor = 0.75;
 
     hash(key) {
@@ -22,11 +21,19 @@ class HashMap {
         return hashCode;
     }
 
+    resize() {
+        let entries = this.entries()
+        this.array = new Array(this.array.length * 2);
+        for (const item of entries) {
+            this.set(item[0], item[1])
+        }
+    }
+
     set(key, value) {
         let index = this.hash(key)
         if (this.array[index] && this.array[index] instanceof Node) {
             let currentNode = this.array[index];
-            while (currentNode) {
+            while (currentNode.next) {
                 // overwrite value if a key exists
                 if (currentNode.key === key) {
                     currentNode.value = value;
@@ -40,6 +47,10 @@ class HashMap {
             this.array[index] = new Node(key, value)
         }
 
+        // resize array
+        if (this.length() / this.array.length > this.loadFacotor) {
+            this.resize()
+        }
     }
 
     get(key) {
@@ -171,3 +182,9 @@ console.log(hashMap.has('john'))
 hashMap.remove('john');
 console.log(hashMap.array)
 console.log(hashMap.length());
+for (let i = 0; i < 65; i++) {
+    hashMap.set(`${i}`, 'smith')
+}
+console.log(hashMap.length())
+console.log(hashMap.keys().length)
+console.log(hashMap.array.length)
