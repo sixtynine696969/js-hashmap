@@ -1,5 +1,5 @@
 class Node {
-    constructor(key, value) {
+    constructor(key) {
         this.key = key;
         this.next = null;
     }
@@ -24,18 +24,17 @@ class HashMap {
         let entries = this.entries()
         this.array = new Array(this.array.length * 2);
         for (const item of entries) {
-            this.set(item[0], item[1])
+            this.set(item)
         }
     }
 
-    set(key) {
+    set(key, value) {
         let index = this.hash(key)
         if (this.array[index] && this.array[index] instanceof Node) {
             let currentNode = this.array[index];
             while (currentNode.next) {
-                // overwrite value if a key exists
+                // skip key if it already exists
                 if (currentNode.key === key) {
-                    currentNode.key = key;
                     return
                 }
                 // find LL tail
@@ -57,7 +56,7 @@ class HashMap {
         if (this.array[index] && this.array[index] instanceof Node) {
             let currentNode = this.array[index];
             while (currentNode) {
-                if (currentNode.key === key) return currentNode.value;
+                if (currentNode.key === key) return currentNode.key;
                 currentNode = currentNode.next;
             }
         }
@@ -137,21 +136,6 @@ class HashMap {
         return keys;
     }
 
-    values() {
-        let values = [];
-        for (let i = 0; i < this.array.length; i++) {
-            let bucket = this.array[i]
-            if (bucket && bucket instanceof Node) {
-                let currentNode = bucket;
-                while (currentNode) {
-                    values.push(currentNode.value);
-                    currentNode = currentNode.next;
-                }
-            }
-        }
-        return values;
-    }
-
     entries() {
         let entries = [];
         for (let i = 0; i < this.array.length; i++) {
@@ -159,7 +143,7 @@ class HashMap {
             if (bucket && bucket instanceof Node) {
                 let currentNode = bucket;
                 while (currentNode) {
-                    entries.push([currentNode.key, currentNode.value]);
+                    entries.push(currentNode.key);
                     currentNode = currentNode.next;
                 }
             }
