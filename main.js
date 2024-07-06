@@ -185,6 +185,7 @@ console.log(hashMap.length());
 for (let i = 0; i < 65; i++) {
     hashMap.set(`${i}`, 'smith')
 }
+console.log(hashMap.array)
 console.log(hashMap.length())
 console.log(hashMap.keys().length)
 console.log(hashMap.array.length)

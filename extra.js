@@ -24,7 +24,7 @@ class HashSet {
         let entries = this.entries()
         this.array = new Array(this.array.length * 2);
         for (const item of entries) {
-            this.set(item)
+            this.set(item);
         }
     }
 
@@ -35,7 +35,7 @@ class HashSet {
             while (currentNode) {
                 // skip key if it already exists
                 if (currentNode.key === key) {
-                    return
+                    return;
                 }
 
                 // find LL tail
@@ -155,7 +155,18 @@ class HashSet {
 }
 
 // Tests
-let hashSet = new HashSet()
-hashSet.set('john')
-hashSet.set('john')
-console.log(hashSet.keys())
+let hashMap = new HashSet()
+hashMap.set('john')
+hashMap.set('john')
+console.log(hashMap.array)
+console.log(hashMap.get('john'))
+console.log(hashMap.has('john'))
+hashMap.remove('john');
+console.log(hashMap.array)
+console.log(hashMap.length());
+for (let i = 0; i < 512; i++) {
+    hashMap.set(`${i}`)
+}
+console.log(hashMap.length())
+console.log(hashMap.keys().length)
+console.log(hashMap.array.length)
