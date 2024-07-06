@@ -24,7 +24,7 @@ class HashSet {
         let entries = this.entries()
         this.array = new Array(this.array.length * 2);
         for (const item of entries) {
-            this.set(item);
+            this.set(item[0]);
         }
     }
 
@@ -42,14 +42,14 @@ class HashSet {
                 if (currentNode.next === null) break;
                 currentNode = currentNode.next;
             }
-            currentNode.next = new Node(key)
+            currentNode.next = new Node(key);
         } else {
-            this.array[index] = new Node(key)
+            this.array[index] = new Node(key);
         }
 
         // resize array
         if (this.length() / this.array.length > this.loadFacotor) {
-            this.resize()
+            this.resize();
         }
     }
 
@@ -145,7 +145,7 @@ class HashSet {
             if (bucket && bucket instanceof Node) {
                 let currentNode = bucket;
                 while (currentNode) {
-                    entries.push(currentNode.key);
+                    entries.push([currentNode.key]);
                     currentNode = currentNode.next;
                 }
             }
