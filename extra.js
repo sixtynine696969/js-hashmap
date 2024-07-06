@@ -5,7 +5,7 @@ class Node {
     }
 }
 
-class HashMap {
+class HashSet {
     array = new Array(16);
     loadFacotor = 0.75;
 
@@ -28,16 +28,18 @@ class HashMap {
         }
     }
 
-    set(key, value) {
+    set(key) {
         let index = this.hash(key)
         if (this.array[index] && this.array[index] instanceof Node) {
             let currentNode = this.array[index];
-            while (currentNode.next) {
+            while (currentNode) {
                 // skip key if it already exists
                 if (currentNode.key === key) {
                     return
                 }
+
                 // find LL tail
+                if (currentNode.next === null) break;
                 currentNode = currentNode.next;
             }
             currentNode.next = new Node(key)
@@ -151,3 +153,9 @@ class HashMap {
         return entries;
     }
 }
+
+// Tests
+let hashSet = new HashSet()
+hashSet.set('john')
+hashSet.set('john')
+console.log(hashSet.keys())
