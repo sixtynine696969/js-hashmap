@@ -39,7 +39,7 @@ class HashMap {
                     currentNode.value = value;
                     return
                 }
-                
+
                 // find LL tail
                 if (currentNode.next === null) break;
                 currentNode = currentNode.next;
@@ -175,9 +175,7 @@ class HashMap {
 let hashMap = new HashMap()
 hashMap.set('john','smith')
 hashMap.set('john', 'smith')
-hashMap.set('john', 'smith')
-hashMap.set('john', 'smith')
-hashMap.set('john', 'smith')
+hashMap.set('john', 'doe')
 console.log(hashMap.array)
 console.log(hashMap.get('john'))
 console.log(hashMap.has('john'))
