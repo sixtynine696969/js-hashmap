@@ -33,13 +33,15 @@ class HashMap {
         let index = this.hash(key)
         if (this.array[index] && this.array[index] instanceof Node) {
             let currentNode = this.array[index];
-            while (currentNode.next) {
+            while (currentNode) {
                 // overwrite value if a key exists
                 if (currentNode.key === key) {
                     currentNode.value = value;
                     return
                 }
+                
                 // find LL tail
+                if (currentNode.next === null) break;
                 currentNode = currentNode.next;
             }
             currentNode.next = new Node(key, value)
